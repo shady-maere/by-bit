@@ -1,0 +1,18 @@
+# Bybit Clone — robots.txt
+# https://bybits.site/robots.txt
+
+User-agent: *
+Allow: /
+
+# Utility / non-public pages — keep out of the index
+Disallow: /admin
+Disallow: /verify
+Disallow: /activate
+Disallow: /offline
+
+# Allow important assets to be crawled (images power image SEO)
+Allow: /assets/img/
+Allow: /assets/fonts/
+
+# Sitemap
+Sitemap: https://bybits.site/sitemap.xml

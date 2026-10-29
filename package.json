@@ -1,0 +1,33 @@
+{
+  "name": "bybit-clone",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bybit clone frontend with Firebase Auth, Realtime Database, and Hosting",
+  "scripts": {
+    "dev": "npx serve -s . -l 3000",
+    "build": "echo \"No build step required; static files served directly.\"",
+    "predeploy": "echo \"Running predeploy checks...\"",
+    "deploy": "firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:database": "firebase deploy --only database",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "firebase": "^11.1.0"
+  },
+  "keywords": [
+    "bybit",
+    "clone",
+    "firebase",
+    "websocket",
+    "crypto"
+  ],
+  "author": "bybit-clone",
+  "license": "MIT",
+  "devDependencies": {
+    "javascript-obfuscator": "^5.9.0"
+  }
+}
